@@ -21,13 +21,16 @@ const Navigator = (props) => {
           {title}
         </h2>
         <ul className="menu-list-wrap">
-          {navList.map((item, index) => (
-            <li key={item.label}>
-              <Link href={item.path} passHref>
-                <a target="_blank">{item.label}</a>
-              </Link>
-            </li>
-          ))}
+          {navList.map((item, index) => {
+            const isURL = /(http|https):\/\/([\w.]+\/?)\S*/.test(item.path);
+            return (
+              <li key={item.label}>
+                <Link href={item.path} passHref>
+                  <a target={isURL ? "_blank" : null}>{item.label}</a>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </Styled>
