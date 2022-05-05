@@ -7,16 +7,16 @@ import dayjs from "dayjs";
 import Navigator from "components/Navigator";
 import Footer from "components/Footer";
 
-import { getList, getTags } from "api/post";
+import { getList } from "api/post";
 import { primaryColor } from "config";
 
-export default function Home(props) {
-  const { list, tags } = props;
+export default function Archives(props) {
+  const { list, tag } = props;
 
   return (
     <div>
       <Head>
-        <title>Hello Fine ｜ 前端 WEB BANG! BANG!! BANG!!!</title>
+        <title>Archives ｜ 前端 WEB BANG! BANG!! BANG!!!</title>
         <meta
           name="keywords"
           content="前端, 博客, web前端博客, 模块化, 工程化, 前端数据监控, 性能优化, 网页制作, 前端, js, html5, css, 前端开发, 区块链, 网络, Vue.js, node.js"
@@ -30,15 +30,8 @@ export default function Home(props) {
 
       <Styled>
         <Navigator title="Hello Fine" />
-        <div style={{ marginBottom: 48 }}>
-          <p>
-            {`What doesn't kill you makes you stronger.`}
-            <br />
-            那些杀不死你的，终将使你变得更强大。
-          </p>
-        </div>
         <div className="archives-card">
-          <h3 className="archives-title">Archives</h3>
+          <h3 className="archives-title">{tag ?? "Archives"}</h3>
           {list.map((item) => (
             <div className="archives-item" key={item.slug}>
               <div>{dayjs(item.date).format("YYYY-MM-DD")}</div>
@@ -47,16 +40,6 @@ export default function Home(props) {
               </Link>
             </div>
           ))}
-        </div>
-        <div className="archives-card">
-          <h3 className="archives-title">Tags</h3>
-          <div>
-            {tags.map((tag) => (
-              <Link href={`/archives?tag=${tag}`} key={tag} passHref>
-                <a target="_blank">{tag}</a>
-              </Link>
-            ))}
-          </div>
         </div>
         <Footer />
       </Styled>
@@ -100,14 +83,15 @@ const Styled = styled.main`
   }
 `;
 
-export const getStaticProps = async (ctx) => {
-  const list = await getList({ page: 1, size: 10 });
-  const tags = await getTags();
+/** @type {import('next').GetServerSideProps} */
+export const getServerSideProps = async (ctx) => {
+  const { query } = ctx;
+  const list = await getList({ tag: query?.tag ?? "", page: 1, size: 10000 });
 
   return {
     props: {
       list: list?.data.list ?? [],
-      tags: tags?.data.list ?? [],
+      tag: query.tag ?? null,
     },
   };
 };
