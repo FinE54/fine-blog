@@ -46,13 +46,13 @@ const Styled = styled.div`
     width: 48px;
     height: 48px;
     margin-right: 18px;
-    background-image: url("/favicon.png");
+    background-image: url("/logo.png");
     background-size: auto 100%;
     background-repeat: no-repeat;
     background-position: center center;
     border-radius: 50%;
     overflow: hidden;
-    filter: grayscale(60%);
+    filter: grayscale(20%);
 
     &:hover {
       filter: grayscale(0%);
