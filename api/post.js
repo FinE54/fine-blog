@@ -24,16 +24,11 @@ export const getPost = async (path) => {
   return Promise.resolve({ code: 1, data: content, msg: "" });
 };
 
-// export const getTags = async () => {
-//   const tagList = getMarkdownTags();
-//   return Promise.resolve({
-//     code: 1,
-//     data: { list: tagList, total: tagList.length },
-//     msg: "",
-//   });
-// };
-
 export const getTags = async () => {
-  // const tagList = getMarkdownTags();
-  return defHttp.get('/api/tag')
+  const tagList = getMarkdownTags();
+  return Promise.resolve({
+    code: 1,
+    data: { list: tagList, total: tagList.length },
+    msg: "",
+  });
 };
