@@ -53,7 +53,7 @@ export default function Home(props) {
           <div>
             {tags.map((tag) => (
               <Link href={`/archives/${tag}`} key={tag} passHref>
-                <a target="_blank">{tag}</a>
+                <a>{tag}</a>
               </Link>
             ))}
           </div>
@@ -86,6 +86,7 @@ const Styled = styled.main`
     }
     .archives-item {
       display: flex;
+      align-items: center;
       margin-top: 6px;
       > div {
         &:first-child {
