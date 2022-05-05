@@ -1,9 +1,5 @@
 import { defHttp } from "libs/request";
-import {
-  getMarkdownList,
-  getMarkdownContent,
-  getMarkdownTags,
-} from "blogs";
+import { getMarkdownList, getMarkdownContent, getMarkdownTags } from "blogs";
 
 export const getList = async ({ page = 1, size = 10, tag }) => {
   const markdownList = getMarkdownList().filter((item) => {
@@ -28,11 +24,16 @@ export const getPost = async (path) => {
   return Promise.resolve({ code: 1, data: content, msg: "" });
 };
 
-export const getTags = async (path) => {
-  const tagList = getMarkdownTags();
-  return Promise.resolve({
-    code: 1,
-    data: { list: tagList, total: tagList.length },
-    msg: "",
-  });
+// export const getTags = async () => {
+//   const tagList = getMarkdownTags();
+//   return Promise.resolve({
+//     code: 1,
+//     data: { list: tagList, total: tagList.length },
+//     msg: "",
+//   });
+// };
+
+export const getTags = async () => {
+  // const tagList = getMarkdownTags();
+  return defHttp.get('/api/tag')
 };

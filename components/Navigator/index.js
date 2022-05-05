@@ -46,13 +46,13 @@ const Styled = styled.div`
     width: 48px;
     height: 48px;
     margin-right: 18px;
-    background-image: url("https://alili.tech/images/logo2.png");
+    background-image: url("/favicon.png");
     background-size: auto 100%;
     background-repeat: no-repeat;
     background-position: center center;
     border-radius: 50%;
     overflow: hidden;
-    filter: grayscale(100%);
+    filter: grayscale(60%);
 
     &:hover {
       filter: grayscale(0%);

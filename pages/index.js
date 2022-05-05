@@ -25,7 +25,7 @@ export default function Home(props) {
           name="description"
           content="公众号: 前端帆仔。持续学习，持续写博客。此生理想、近期计划、今日功课。"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <Styled>
@@ -52,7 +52,7 @@ export default function Home(props) {
           <h3 className="archives-title">Tags</h3>
           <div>
             {tags.map((tag) => (
-              <Link href={`/archives?tag=${tag}`} key={tag} passHref>
+              <Link href={`/archives/${tag}`} key={tag} passHref>
                 <a target="_blank">{tag}</a>
               </Link>
             ))}

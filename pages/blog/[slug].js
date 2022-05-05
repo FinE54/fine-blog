@@ -27,7 +27,7 @@ export default function Archives(props) {
           content={[...(data.tags ?? []), ...(data.keywords ?? [])].join(",")}
         />
         <meta name="description" content={data.description} />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <Styled>
@@ -37,7 +37,7 @@ export default function Archives(props) {
             <span>{dayjs(data.date).format("YYYY-MM-DD")}</span>
             <span>
               {data.tags.map((tag) => (
-                <Link key={tag} href={`/archives?tag=${tag}`} passHref>
+                <Link key={tag} href={`/archives/${tag}`} passHref>
                   <a target={"_blank"}>{tag}</a>
                 </Link>
               ))}
